@@ -37,5 +37,7 @@ RUN cd ikos-3.0/build && \
 
 FROM ubuntu:21.04
 COPY --from=0 /usr/local/ikos /usr/local/ikos
-RUN apt-get update && apt-get upgrade -y && apt-get install -qq build-essential
+RUN apt-get update && apt-get upgrade -y && apt-get install -qq \
+    python3 \
+    build-essential
 ENV PATH "/usr/local/ikos/bin:$PATH"
