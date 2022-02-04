@@ -36,7 +36,7 @@ RUN apt-get update
 # Install all dependencies
 RUN apt-get install -qq gcc g++ cmake libgmp-dev libboost-dev \
         libboost-filesystem-dev libboost-thread-dev libboost-test-dev python \
-        python3-pygments libsqlite3-dev libtbb-dev libz-dev libedit-dev \
+        libsqlite3-dev libtbb-dev libz-dev libedit-dev \
         llvm-9 llvm-9-dev llvm-9-tools clang-9
 
 # Add ikos source code
