@@ -43,4 +43,5 @@ COPY --from=0 /etc/localtime /etc/localtime
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -qq \
     python \
-    build-essential
+    build-essential \
+    clang-9
