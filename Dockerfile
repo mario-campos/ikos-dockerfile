@@ -27,12 +27,13 @@ RUN apt-get update && apt-get install -qq \
 
 ADD https://github.com/NASA-SW-VnV/ikos/releases/download/v3.0/ikos-3.0.tar.gz .
 RUN tar zxf ikos-3.0.tar.gz && mkdir ikos-3.0/build
-RUN cd ikos-3.0/build && MAKEFLAGS=-j2 cmake \
+RUN cd ikos-3.0/build && \
+    MAKEFLAGS=-j2 cmake \
       -DCMAKE_INSTALL_PREFIX=/usr/local/ikos \
       -DCMAKE_BUILD_TYPE="$build_type" \
       -DLLVM_CONFIG_EXECUTABLE=/usr/lib/llvm-9/bin/llvm-config \
-      ..
-RUN make && make check && make install
+      .. && \
+    make && make check && make install
 
 FROM ubuntu:21.04
 COPY --from=0 /usr/local/ikos /usr/local/ikos
