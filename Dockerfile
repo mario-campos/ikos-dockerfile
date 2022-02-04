@@ -29,15 +29,18 @@ ADD https://github.com/NASA-SW-VnV/ikos/releases/download/v3.0/ikos-3.0.tar.gz .
 RUN tar zxf ikos-3.0.tar.gz && mkdir ikos-3.0/build
 RUN cd ikos-3.0/build && \
     MAKEFLAGS=-j2 cmake \
-      -DCMAKE_INSTALL_PREFIX=/usr/local/ikos \
+      -DCMAKE_INSTALL_PREFIX=/usr/local \
       -DCMAKE_BUILD_TYPE="$build_type" \
       -DLLVM_CONFIG_EXECUTABLE=/usr/lib/llvm-9/bin/llvm-config \
       .. && \
     make && make check && make install
 
 FROM ubuntu:21.04
-COPY --from=0 /usr/local/ikos /usr/local/ikos
+
+COPY --from=0 /usr/local/bin /usr/local/bin
+COPY --from=0 /etc/timezone /etc/timezone
+COPY --from=0 /etc/localtime /etc/localtime
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -qq \
     python3 \
     build-essential
-ENV PATH "/usr/local/ikos/bin:$PATH"
