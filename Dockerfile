@@ -37,10 +37,10 @@ RUN cd ikos-3.0/build && \
 
 FROM ubuntu:21.04
 
-COPY --from=0 /usr/local/bin /usr/local/bin
+COPY --from=0 /usr/local /usr/local
 COPY --from=0 /etc/timezone /etc/timezone
 COPY --from=0 /etc/localtime /etc/localtime
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -qq \
-    python3 \
+    python \
     build-essential
