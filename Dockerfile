@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -qq \
     llvm-9-tools \
     clang-9
 
-ADD https://github.com/NASA-SW-VnV/ikos/releases/download/v3.0/ikos-3.0.tar.gz
+ADD https://github.com/NASA-SW-VnV/ikos/releases/download/v3.0/ikos-3.0.tar.gz .
 RUN tar zxf ikos-3.0.tar.gz && mkdir ikos-3.0/build
 RUN cd ikos-3.0/build && MAKEFLAGS=-j2 cmake \
       -DCMAKE_INSTALL_PREFIX=/usr/local/ikos \
